@@ -21,7 +21,7 @@ public class Main {
         System.out.println("Hello " + name + ".Your age is " + number);
     }
 }
------
+-----int. byte and long Datatype: short, float, double, boolean, char  
 public class Main {
     public static void main(String[] args) {
         int max = Integer.MAX_VALUE;
@@ -122,7 +122,7 @@ public class Main {
     }
 }
 
--------ControlFlow-------
+-------ControlFlow-------if statement, else if & Nested ifs
 public class Main {
     public static void main(String[] args) {
         int number = 10;
@@ -145,7 +145,7 @@ public class Main {
         }
     }
 }
------
+-----Logical NOT operator, if, else if.
 public class Main {
     public static void main(String[] args) {
         int year = 2022;
@@ -308,3 +308,109 @@ public class Main {
     }
 }
 ----- FOR loop
+public class Main {
+    public static void main(String[] args) {
+
+        for (int i = 0; i <= 10; i++) {
+            System.out.println("i = " + i);
+        }
+        
+        for (int i = 10; i >= 0; i--) {
+            System.out.println("i = " + i);
+        }
+
+    }
+}
+----- continue & break
+public class Main {
+    public static void main(String[] args) {
+
+        for (int i = 0; i <= 100; i++) {
+            if (i == 50) {
+                break;
+                //continue;
+            }
+            System.out.println("i = " + i);
+        }
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+
+        for (int i = 0; i <= 100; i++) {
+            if (i >= 30 && i <= 50) {
+                //break;
+                continue;
+            }
+            System.out.println("i = " + i);
+        }
+    }
+}
+----- while loop  
+public class Main {
+    public static void main(String[] args) {
+
+        int number = 0;
+        while (number <= 10) {
+            number++;
+            System.out.println(number);
+        }
+    }
+}
+-----do while loop
+public class Main {
+    public static void main(String[] args) {
+
+        int number = 0;
+        do {
+            System.out.println(number);
+        } while (number >= 1);
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+
+        int number = 0;
+
+        do {
+            System.out.println(number);
+            number++;
+        } while (number <= 10);
+    }
+}
+----- Functions
+public class Main {
+    public static void main(String[] args) {
+        //System.out.println("Hello and welcome!");
+        sayHello("Nii", 27);
+        sayHello("OB", 28);
+
+    }
+
+    public static void sayHello(String name, int age) {
+        System.out.println("Hello " + name + "!" + " Your age is " + age);
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+       int max = getMax(1, 5);
+        System.out.println(max);
+
+    }
+
+    public static void sayHello(String name, int age) {
+        System.out.println("Hello " + name + "!" + " Your age is " + age);
+    }
+
+    public static int getMax(int num1, int num2) {
+        if (num1 > num2) {
+            return num1;
+        } else {
+            return num2;
+        }
+    }
+}
+----- Arrays
