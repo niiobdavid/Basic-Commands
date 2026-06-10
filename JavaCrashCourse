@@ -1,0 +1,310 @@
+----------Hello World----------
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+        String name = "Nii!";
+        System.out.println("Hello " + name);
+        System.out.println("Hello " + name);
+    }
+}
+
+-----Variable-----
+public class Main {
+    public static void main(String[] args) {
+        String name = "Alex!";
+        int number = 23;
+        System.out.println("Hello " + name + ".Your age is " + number);
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+        int max = Integer.MAX_VALUE;
+        int min = Integer.MIN_VALUE;
+
+        System.out.println("The maximum value for an int = " + max);
+        System.out.println("The minimum value for an int = " + min);
+
+        System.out.println("The maximum value for an int = " + (max + 1));
+        System.out.println("The minimum value for an int = " + (min - 1));
+
+        byte maxByteValue = Byte.MAX_VALUE;
+        byte minByteValue = Byte.MIN_VALUE;
+
+        System.out.println("The maximum value for a byte = " + maxByteValue );
+        System.out.println("The minimum value for a byte = " + minByteValue);
+
+        long maxLongValue = Long.MAX_VALUE;
+        long minLongValue = Long.MIN_VALUE;
+
+        System.out.println("Long max value = " + maxLongValue );
+        System.out.println("Long min value = " + minLongValue);
+
+        short maxShortValue = Short.MAX_VALUE;
+        short minShortValue = Short.MIN_VALUE;
+
+        System.out.println("Max short value = " + maxShortValue );
+        System.out.println("Min short value = " + minShortValue);
+
+        long myNumber = 2147483648L;
+
+        float maxFloatValue = Float.MAX_VALUE;
+        float minFloatValue = Float.MIN_VALUE;
+
+        System.out.println("Maximum Float number " + maxFloatValue);
+        System.out.println("Minimum Float number " + minFloatValue);
+
+        double maxDoubleValue = Double.MAX_VALUE;
+        double minDoubleValue = Double.MIN_VALUE;
+
+        System.out.println("Maximum double number " + maxDoubleValue);
+        System.out.println("Minimum double number " + minDoubleValue);
+
+        char letter = 'A';
+        boolean isActive = true;
+        System.out.println(letter);
+        System.out.println(isActive);
+
+        int num1 = 5;
+        int num2 = 3;
+
+        System.out.println(num1 + num2);
+        System.out.println(num1 - num2);
+        System.out.println(num1 * num2);
+        System.out.println(num1 / num2);
+
+        float Num1 = 5f;
+        int Num2 = 3;
+
+        System.out.println(Num1 + Num2);
+        System.out.println(Num1 - Num2);
+        System.out.println(Num1 * Num2);
+        System.out.println(Num1 / Num2);
+
+        double Numb1 = 5;
+        int Numb2 = 3;
+
+        System.out.println("D = " + (Numb1 + Numb2));
+        System.out.println("D = " + (Numb1 - Numb2));
+        System.out.println("D = " + Numb1 * Numb2);
+        System.out.println("D = " + Numb1 / Numb2);
+        System.out.println("D = " + Numb1 % Numb2);
+
+        int myNum = 0;
+
+        myNum += 4;
+        System.out.println(myNum);
+
+        myNum -= 4;
+        System.out.println(myNum);
+
+        myNum *= 4;
+        System.out.println(myNum);
+
+        myNum /= 4;
+        System.out.println(myNum);
+
+        myNum %= 4;
+        System.out.println(myNum);
+
+        myNum = 0;
+        System.out.println(myNum++);
+        System.out.println("postfix incrementation up = " + myNum);
+        System.out.println("prefix incrementation = " + ++myNum);
+        System.out.println("prefix decrementation = " + --myNum);
+        System.out.println("postfix decrementation next = " + myNum--);
+        System.out.println("postfix decrementation = " + myNum);
+    }
+}
+
+-------ControlFlow-------
+public class Main {
+    public static void main(String[] args) {
+        int number = 10;
+
+        if (number == 10) {
+            System.out.println("They are equal. \n");
+        }
+
+        int age = 17;
+
+        if (age >= 18) {
+            System.out.println("You can vote! ");
+            System.out.println("Please put an X in the ballot!");
+        } else {
+            if (18 - age == 1) {
+                System.out.println("You can't vote! \n Please come back in " + (18 - age) + " year");
+            } else {
+                System.out.println("You can't vote! \n Please come back in " + (18 - age) + " years");
+            }
+        }
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+        int year = 2022;
+
+        if (year != 2019) {
+            System.out.println("The year is = " + year);
+        } else if (year == 2020) {
+            System.out.println("The year is = " + year);
+        } else if (year == 2022) {
+            System.out.println("The year is = " + year);
+        } else {
+             System.out.println("All conditions failed.");
+        }
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+        boolean isActive = true;
+
+        if (!isActive) {
+            System.out.println("The user is active");
+        } else {
+            System.out.println("The user is not active");
+        }
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+        boolean isActive = true;
+        int myNumber = 20;
+
+        if (!(myNumber >= 10)) {
+            System.out.println("The user is active");
+        } else {
+            System.out.println("The user is not active");
+        }
+    }
+}
+----- logical AND (&&) operator
+public class Main {
+    public static void main(String[] args) {
+        boolean isActive = false;
+        int score = 100;
+
+        if (score >= 100 && isActive) {
+            System.out.println("You opened the next level.");
+        } else {
+            System.out.println("You are at the same level.");
+        }
+    }
+}
+----- logical OR operator
+public class Main {
+    public static void main(String[] args) {
+       int num1 = 5;
+       int num2 = -4;
+
+       if (num1 > 0 || num2 > 0) {
+           System.out.println("The condition is true.");
+       } else {
+           System.out.println("All conditions failed.");
+       }
+    }
+}
+---- SWITCH statement
+public class Main {
+    public static void main(String[] args) {
+       int time = 2;
+
+       switch (time) {
+           case 10:
+               System.out.println("The time is " + time + "\nTime for a coffee.");
+               break;
+
+           case 12:
+               System.out.println("The time is " + time + "\nTime for a run.");
+               break;
+
+           case 7:
+               System.out.println(" The time is " + time + "\nIt's time to wake up.");
+               break;
+
+           default:
+               System.out.println("Time to relax.");
+               break;
+       }
+    }
+}
+----- add a scanner (type in terminal)
+import java.util.Scanner;
+
+public class Main {
+    public static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+
+       System.out.println("What time is it?");
+       int time = scanner.nextInt();
+
+       switch (time) {
+           case 10:
+               System.out.println("The time is " + time + "\nTime for a coffee.");
+               break;
+           case 12:
+               System.out.println("The time is " + time + "\nTime for a run.");
+               break;
+           case 7:
+               System.out.println("The time is " + time + "\nIt's time to wake up.");
+               break;
+           default:
+               System.out.println("Time to relax.");
+               break;
+       }
+    }
+}
+----- enhanced SWITCH
+import java.util.Scanner;
+
+public class Main {
+    public static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+
+       System.out.println("What time is it?");
+       int time = scanner.nextInt();
+
+        switch (time) {
+            case 10 -> System.out.println("The time is " + time + "\nTime for a coffee.");
+            case 12 -> System.out.println("The time is " + time + "\nTime for a run.");
+            case 7 -> System.out.println("The time is " + time + "\nIt's time to wake up.");
+            default -> System.out.println("Time to relax.");
+        }
+    }
+} //removes the break, but when there's lots of code, add {} like below
+--
+import java.util.Scanner;
+
+public class Main {
+    public static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+
+       System.out.println("What time is it?");
+       int time = scanner.nextInt();
+
+        switch (time) {
+            case 10 -> {
+                System.out.println("The time is " + time + "\nTime for a coffee.");
+                //put curly braces when there's more code
+            }
+            case 12 -> {
+                System.out.println("The time is " + time + "\nTime for a run.");
+            }
+            case 7 -> {
+                System.out.println("The time is " + time + "\nIt's time to wake up.");
+            }
+            default -> {
+                System.out.println("Time to relax.");
+            }
+        }
+    }
+}
+----- FOR loop
