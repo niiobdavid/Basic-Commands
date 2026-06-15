@@ -1,3 +1,5 @@
+https://youtu.be/GdzRzWymT4c --FreecodeCamp
+
 ----------Hello World----------
 public class Main {
     public static void main(String[] args) {
@@ -414,3 +416,322 @@ public class Main {
     }
 }
 ----- Arrays
+public class Main {
+    public static void main(String[] args) {
+
+        int[] numbers = {12,15,60,100,200,20,50};
+        for (int number : numbers) {
+            //System.out.println(number);
+            System.out.println(numbers[3]);
+        }
+        System.out.println("\n");
+        String[] friends = {"Maria", "Alex", "Bita", "Ana", "John", "Steve"};
+        for (String friend : friends) {
+            //System.out.println(friend);
+            System.out.println(friends[3]);
+        }
+    }
+}
+-----
+public class Main {
+    public static void main(String[] args) {
+
+        int[] numbers = {12,15,60,100,200,20,50};
+        for (int i = 0; i <= numbers.length -1; i++) {
+            //Index 7 out of bounds for length 7. so add -1 for length
+            System.out.println(numbers[i]);
+        }
+        System.out.println("\n");
+        String[] friends = {"Maria", "Alex", "Bita", "Ana", "John", "Steve"};
+        for (int i = 0; i < friends.length ; i++) {
+            System.out.println(friends[i]);
+
+        }
+        int [] numbers2 = new int[5];
+        numbers2[0] = 1;
+        numbers2[1] = 5;
+        numbers2[2] = 7;
+        numbers2[3] = 10;
+        numbers2[4] = 24;
+        //Cant add more cus array will be out of bounds. int is 5
+    }
+}
+----- Arrays Challenge -: print the largest number
+public class Main {
+    public static void main(String[] args) {
+        int[] numbers = {1, 2, 5, 7, 8, 9, 22, 77, 100, 150, 0};
+        int maxFound = getMax(numbers);
+        System.out.println(maxFound);
+    }
+
+    public static int getMax(int[] numbers) {
+        int max = numbers[0];
+        for (int number : numbers) {
+            if (number > max) {
+                max = number;
+            }
+        }
+        return max;
+    }
+}
+---- OOP -Object Oriented Programming  
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car("Tesla", "S PLAID", "Black", 4);
+        Car car2 = new Car("Ford", "Mustang", "Red", 2);
+    }
+}
+-----
+public class Car {
+    private String name;
+
+    private String model;
+
+    private String colour;
+
+    private int doors;
+
+    public Car (String name, String model, String colour, int doors) {
+        this.name = name;
+        this.model = model;
+        this.colour = colour;
+        this.doors = doors;
+    }
+
+    public void move() {
+        System.out.println("The car " + this.name + " is moving.");
+    }
+
+    public void stop() {
+        System.out.println("The car " + this.name + " has stopped.");
+    }
+}
+---- Add getter and setter
+public class Car {
+    private String name;
+
+    private String model;
+
+    private String colour;
+
+    private int doors;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public int getDoors() {
+        return doors;
+    }
+
+    public void setDoors(int doors) {
+        this.doors = doors;
+    }
+
+    public Car (String name, String model, String colour, int doors) {
+        this.name = name;
+        this.model = model;
+        this.colour = colour;
+        this.doors = doors;
+    }
+
+    public void move() {
+        System.out.println("The car " + this.name + " is moving.");
+    }
+
+    public void stop() {
+        System.out.println("The car " + this.name + " has stopped.");
+    }
+}
+----
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car("Tesla", "S PLAID", "Black", 4);
+        Car car2 = new Car("Ford", "Mustang", "Red", 2);
+
+        System.out.println(car.getName());
+        System.out.println(car.getModel());
+        System.out.println(car.getColour());
+        System.out.println(car.getDoors());
+        System.out.println("\n");
+
+        System.out.println(car2.getName());
+        System.out.println(car2.getModel());
+        System.out.println(car2.getColour());
+        System.out.println(car2.getDoors());
+
+        car.setName("Car");
+        System.out.println(car.getName()); //shortcut car.getName().sout
+    }
+}
+-----
+public class Car {
+    private String name;
+
+    private String model;
+
+    private String colour;
+
+    private int doors;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
+    }
+
+    public int getDoors() {
+        return doors;
+    }
+
+    public void setDoors(int doors) {
+        this.doors = doors;
+    }
+
+    public Car (String name, String model, String colour, int doors) {
+        this.name = name;
+        this.model = model;
+        this.colour = colour;
+        this.doors = doors;
+    }
+
+    public Car() {
+        this("Name", "Model", "Colour", 0);
+    }
+
+    public Car(String name) {
+        this(name, "Model", "Colour", 0);
+    }
+
+    public Car(String name, String model) {
+        this(name, model, "Colour", 0);
+    }
+
+    public Car(String name, String model, String colour) {
+        this(name, model, colour, 0);
+    }
+
+    public void move() {
+        System.out.println("The car " + this.name + " is moving.");
+    }
+
+    public void stop() {
+        System.out.println("The car " + this.name + " has stopped.");
+    }
+}
+----
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car("Tesla", "S PLAID", "Black", 4);
+        Car car2 = new Car("Ford", "Mustang");
+
+        car2.move();
+        car2.stop();
+        System.out.println(car2.getName());
+        System.out.println(car2.getModel());
+        System.out.println(car2.getColour());
+        System.out.println(car2.getDoors());
+        
+    }
+}
+-----OOP: Constructors & Inheritance
+import javax.xml.crypto.dsig.spec.XSLTTransformParameterSpec;
+
+public class Main {
+    public static void main(String[] args) {
+        Car car = new Car("Tesla", "S PLAID", "RED", 4);
+        Plane plane = new Plane("Boeing", "Model", "White & Blue", 9, 4);
+
+        car.move();
+        car.stop();
+
+        plane.move();
+        plane.stop();
+    }
+}
+
+class Vehicle {
+    private String name;
+    private String colour;
+
+    public Vehicle(String name, String colour) {
+        this.name = name;
+        this.colour = colour;
+    }
+
+    public void move() {
+        System.out.println("The vehicle " + this.name + " is moving.");
+    }
+
+    public void stop() {
+        System.out.println("The vehicle " + this.name + " has stopped.");
+    }
+}
+
+class Car extends Vehicle {
+    private String model;
+    private int doors;
+    public Car(String name, String model, String colour, int doors) {
+        super(name,colour);
+        this.model = model;
+        this.doors = doors;
+    }
+}
+
+class Plane extends Vehicle{
+    private String model;
+    private int doors;
+    private int engines;
+
+    public Plane(String name, String model, String colour, int doors, int engines) {
+        super(name,colour);
+        this.model = model;
+        this.doors = doors;
+        this.engines = engines;
+    }
+
+    @Override
+    public void move() {
+        System.out.println("Moving by flying.");
+        super.move();
+    }
+}
+-----
