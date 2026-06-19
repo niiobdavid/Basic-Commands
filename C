@@ -1,0 +1,471 @@
+Basic C Statements and Functions
+| Function/Keyword | Purpose                        | Example               |
+| ---------------- | ------------------------------ | --------------------- |
+| `printf()`       | Display output                 | `printf("Hello");`    |
+| `scanf()`        | Get user input                 | `scanf("%d", &age);`  |
+| `int`            | Integer data type              | `int age = 25;`       |
+| `float`          | Decimal data type              | `float price = 10.5;` |
+| `char`           | Character data type            | `char grade = 'A';`   |
+| `if`             | Conditional statement          | `if(age >= 18)`       |
+| `else`           | Alternative condition          | `else {}`             |
+| `switch`         | Multiple conditions            | `switch(choice)`      |
+| `for`            | Loop                           | `for(i=0;i<5;i++)`    |
+| `while`          | Loop while condition is true   | `while(i<5)`          |
+| `do...while`     | Execute then check condition   | `do{}while(i<5);`     |
+| `break`          | Exit loop/switch               | `break;`              |
+| `continue`       | Skip current iteration         | `continue;`           |
+| `return`         | Return a value from a function | `return 0;`           |
+
+C Full Course --- https://www.youtube.com/watch?v=xND0t1pr3KY
+#include <stdio.h>
+----Comments----
+int main(){
+
+    //This is my first program!
+    /*This
+    is
+    also
+    a
+    comment*/
+
+    printf("I like food!\n");
+    printf("It's really good!");
+
+    return 0;
+}
+----integers (int) //Can't store decimal portions %d
+#include <stdio.h>
+
+int main(){
+
+    //variable = A reusable container for a value.
+    //          Behaves as if it were the value it contains
+
+    int age = 25;
+    int year = 2025;
+    int quantity = 2;
+
+    printf("You are %d years old\n", age );
+    printf("The year is %d\n", year);
+    printf("You have ordered %dx items\n", quantity);
+
+    return 0;
+}
+----Floating point number [float], to store decimal portions (about 5) %f
+int main(){
+
+    float gpa = 2.5;
+    float price = 19.99;
+    float temperature = -10.1;
+
+    printf("Your gpa is %.2f\n", gpa);
+    printf("The price is $%f\n", price);
+    printf("The temperature is %f°F\n", temperature);
+
+    return 0;
+}
+---- double [%lf] (long floating point number), to store more than 5 decimal portions (about 15) like π [alt+227]
+int main(){
+
+    double pi = 3.141592653589793;
+    double e = 2.718281828459045;
+
+    printf("The value of pi is = %.15lf\n", pi);
+    printf("The value of e is = %.15lf\n", e);
+
+    return 0;
+}
+---- char (Characters) - store single characters %c
+int main(){
+
+    char grade = 'A';
+    char symbol = '!';
+    char currency =  '$';
+
+    printf("Your grade is %c\n", grade);
+    printf("Your favourite symbol is %c\n", symbol);
+    printf("Your prefered currency is %c\n", currency);
+
+    return 0;
+}
+--- char [] (strings) [%s] - store multiple characters
+int main(){
+
+    char name[] = "Nii OB";
+    char food[] = "Fufu & Goat soup";
+    char email[] = "example@gmail.com";
+
+    printf("Hello %s!\n", name);
+    printf("Your fav food is %s\n", food);
+    printf("Your email is %s\n", email);
+
+    return 0;
+}
+---- boolean [bool], true or false -: requires <stdbool.h>
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(){
+
+    bool isOnline = 1; //true=1 ,false=0
+    bool isStudent = 0;
+    bool forSale = false;
+
+    if (isOnline){
+        printf("You are ONLINE");
+    } else {
+        printf("You are OFFLINE");
+    }
+    if (!isStudent) {
+        printf("\nYou are a Student");
+    } else {
+        printf("\nYou are NOT a Student");
+    }
+    if (forSale) {
+        printf("\nThis item is for sale.");
+    } else{
+        printf("\nThis item is NOT for sale!");
+    }
+      
+    return 0;
+}
+-------------------Summary------------------------------
+int main() {
+
+/* variable = A reusable container for a value.
+Behaves as if it were the value it contains.*/
+
+// int = whole numbers (4 bytes in modern systems) %d
+// float = single-precision decimal number (4 bytes) %f
+// double = double-precision decimal number (8 bytes) %lf
+// char = single character (1 byte) %c
+// char[] = array of characters (size varies) %s
+// bool = true or false (1 byte, requires <stdbool.h>)
+
+return 0;
+}
+----PS
+#include <stdio.h>
+
+int main(){
+
+    int age = 25;
+    float price = 19.99;
+    double pi = 3.1415926535;
+    char currency = '$';
+    char name [] = "Nii OB";
+
+    printf("%d\n", age);
+    printf("%.2f\n", price);
+    printf("%.10lf\n", pi);
+    printf("%c\n", currency);
+    printf("%s\n", name);
+
+    return 0;
+}
+I------------------------------------------------------------------------
+
+Format specifier
+#include <stdio.h>
+
+int main(){
+
+    //Format specifier = Special tokens that begin with a % symbol, followed by a character that specifies the data type 
+    //                    and optional modifiers (width, precision, flags). 
+    //                    They control how data is displayed or interpreted.
+    
+    //width
+
+    int num1 = 1;
+    int num2 = 10;
+    int num3 = 100;
+
+    printf("%d\n", num1);
+    printf("%d\n", num2);
+    printf("%d\n", num3);
+
+    printf("%3d\n", num1);
+    printf("%3d\n", num2);
+    printf("%3d\n", num3);
+
+    printf("%4d\n", num1);
+    printf("%4d\n", num2);
+    printf("%4d\n", num3);
+
+    printf("\n%04d\n", num1);
+    printf("%04d\n", num2);
+    printf("%04d\n", num3);
+    
+    printf("%0-d\n", num1);
+    printf("%0-d\n", num2);
+    printf("%0-d\n", num3);
+
+    printf("%0+d\n", num1);
+    printf("%0+d\n", num2);
+    printf("%0+d\n", num3); // if num3 = -100 it would print -100
+
+    printf("\n");
+
+    //precision flags
+    //float displays 6 digits after decimal point by default, so write "%.2f" when dealing with (eg.prices) 
+
+    float price1 = 19.99;
+    float price2 = 1.50;
+    float price3 = -100.00;
+
+    printf("%.2f\n", price1);//2 decimal points
+    printf("%.1f\n", price1);//1 decimal point and round up
+    printf("%10f\n", price2);// 10spaces left to right
+    printf("%-9.2f\n", price3);// 9spaces right to left
+
+    return 0;
+}
+---------- Arithmetic operators = + - * / % ++ --
+#include <stdio.h>
+
+int main(){
+
+    //arithmetic operators + - *
+
+    int x = 2;
+    int y = 3;
+    int z = 0;
+
+    //z = x + y;
+    //z = x - y;
+    z = x * y;
+
+    printf("%d", z);
+
+    return 0;
+}
+---
+#include <stdio.h>
+
+int main(){
+
+    //arithmetic operators / 
+
+    int x = 2;
+    float y = 3;
+    float z = 0; 
+
+    z = x / y; //since result will be decimal use float for z and either x or y for eqn success
+
+    printf("%f", z);
+
+    return 0;
+}
+---
+int main(){
+
+    //arithmetic operators %
+
+    //int x = 10;
+    int x = 11;
+    int y = 2;
+    int z = 0;
+
+    z = x % y; //OR z = x % 2;
+
+    printf("%d", z);
+
+    return 0;
+}
+---
+#include <stdio.h>
+
+int main(){
+
+    //arithmetic operators ++ --
+
+    int x = 10;
+    int y = 2;
+    int z = 0;
+
+    //x++; //increment of +1
+    x--; //decrement of -1
+
+    printf("%d", x);
+
+    return 0;
+}
+----
+#include <stdio.h>
+
+int main(){
+
+    //arithmetic operators ++ -- += -= *= /=
+
+    int x = 10;
+    int y = 2;
+    int z = 0;
+
+    //x++; //increment of +1
+    //x--; //decrement of -1
+ 
+    // Augmented Assignment Operators
+    //x+=2; ==> [x = x + 2;]
+    //x-=3; ==> [x = x - 3;]
+    //x *=2; ==> [x = x * 2;]
+    x/=2; ==> [x = x / 2;]
+
+    printf("%d", x);
+
+    return 0;
+}
+------------Accepting user input ---------
+#include <stdio.h>
+
+int main(){
+
+    int age = 0;
+    float gpa = 0.0f;
+    char grade = '\0';
+    char name[15] = "";
+
+    printf("Enter your age: ");
+    scanf("%d", &age);
+
+    printf("Enter your gpa: ");
+    scanf("%f", &gpa);
+
+    printf("Enter your grade: ");
+    scanf(" %c", &grade); //leave space before %c to skip over white spaces
+
+    getchar(); // Clears the leftover newline character from the input buffer
+    printf("Enter your full name: ");
+    fgets(name, sizeof(name), stdin); // Reads the full name (including spaces) from the user and stores it in the name array
+
+    printf("%d\n", age);
+    printf("%.2f\n", gpa);
+    printf("%c\n", grade);
+    printf("%s\n", name);
+
+----optional
+#include <string.h>
+
+    getchar(); // Clears the leftover newline character from the input buffer
+    printf("Enter your full name: ");
+    fgets(name, sizeof(name), stdin); // Reads the full name (including spaces) from the user and stores it in the name array
+    name{strlen(name) - 1] = '\0';
+    
+    printf("%s\n", name);
+    printf("%d\n", age);
+    printf("%.2f\n", gpa);
+    printf("%c\n", grade);
+    
+
+    return 0;
+}
+
+--------------- shopping cart program--------------
+--on my own :D
+#include <stdio.h>
+
+int main(){
+
+    // SHOPPING CART PROGRAM
+
+    char item[15] = ""; 
+    float price = 0.0f;
+    int quantity = 0;
+    float total = 0.0f;
+    
+    printf("What would you like to buy?: ");
+    scanf("%s", &item);
+
+    printf("How much does each cost each?: ");
+    scanf("%f", &price);
+
+    printf("How many would you like to buy?: ");
+    scanf("%d", &quantity);
+    
+    total = quantity * price;
+    printf("\nYou have bought %d %s\n", quantity, item);
+    printf("Your total is $%.2f", total);
+
+    return 0;
+}
+-----ideal
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+
+    // SHOPPING CART PROGRAM
+
+    char item[50] = ""; 
+    float price = 0.0f;
+    int quantity = 0;
+    char currency = '$';
+    float total = 0.0f;
+    
+    printf("What item would you like to buy?: ");
+    fgets(item, sizeof(item),stdin);
+    item[strlen(item) -1] = '\0';
+
+
+    printf("What is the price for each?: ");
+    scanf("%f", &price);
+
+    printf("How many would you like?: ");
+    scanf("%d", &quantity);
+    
+    total = quantity * price;
+    printf("\nYou have bought %d %s/s\n", quantity, item);
+    printf("Your total is: %c%.2f", currency, total);
+
+    return 0;
+}
+----Interactive mad libs game ------
+---On My Own :D
+#include <stdio.h>
+#include<string.h>
+
+int main(){
+
+    //MAD LIBS GAME
+
+    char adjective1[50] = "";
+    char noun[50] = "";
+    char adjective2[50] = "";
+    char verb[50] = "";
+    char adjective3[50] = "";
+
+    printf("Enter an adjective (description): ", &adjective1);
+    fgets(adjective1, sizeof(adjective1), stdin);
+    adjective1[strlen(adjective1) -1] = '\0';
+
+    printf("Enter a noun (animal or person): ", &noun);
+    fgets(noun, sizeof(noun), stdin);
+    noun[strlen(noun) - 1] = '\0';
+
+    printf("Enter an adjective (description): ", &adjective2);
+    fgets(adjective2, sizeof(adjective2), stdin);
+    adjective2[strlen(adjective2) -1] = '\0';
+ 
+    printf("Enter a verb (ending w/ -ing): ", &verb);
+    fgets(verb, sizeof(verb), stdin);
+    verb[strlen(verb) - 1] = '\0';
+        
+    printf("Enter an adjective (description): ", &adjective3);
+    fgets(adjective3, sizeof(adjective3), stdin);
+    adjective3[strlen(adjective3) - 1] = '\0';
+
+    printf("\nToday I went to a %s zoo.\n", adjective1);
+    printf("In an exibit, I saw a %s.\n", noun);
+    printf("The %s was %s and %s!\n", noun, adjective2, verb);
+    printf("I was %s!", adjective3);
+
+    return 0;
+}
+// Turns out it was the same as in the video. I just had to rearrange the char values to make it clean... 
+// see here vv
+    char noun[50] = "";
+    char verb[50] = "";
+    char adjective1[50] = "";
+    char adjective2[50] = "";
+    char adjective3[50] = "";
+
+------------math functions------------
