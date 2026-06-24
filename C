@@ -316,6 +316,7 @@ int main(){
 }
 ------------Accepting user input ---------
 #include <stdio.h>
+#include <string.h>
 
 int main(){
 
@@ -333,7 +334,7 @@ int main(){
     printf("Enter your grade: ");
     scanf(" %c", &grade); //leave space before %c to skip over white spaces
 
-    getchar(); // Clears the leftover newline character from the input buffer
+   /* getchar(); // Clears the leftover newline character from the input buffer
     printf("Enter your full name: ");
     fgets(name, sizeof(name), stdin); // Reads the full name (including spaces) from the user and stores it in the name array
 
@@ -342,15 +343,15 @@ int main(){
     printf("%c\n", grade);
     printf("%s\n", name);
 
-----optional
-#include <string.h>
+----optional*/
+
 
     getchar(); // Clears the leftover newline character from the input buffer
     printf("Enter your full name: ");
     fgets(name, sizeof(name), stdin); // Reads the full name (including spaces) from the user and stores it in the name array
-    name{strlen(name) - 1] = '\0';
+    name[strlen(name) - 1] = '\0';
     
-    printf("%s\n", name);
+    printf("\n%s\n", name);
     printf("%d\n", age);
     printf("%.2f\n", gpa);
     printf("%c\n", grade);
@@ -469,3 +470,276 @@ int main(){
     char adjective3[50] = "";
 
 ------------math functions------------
+#include <stdio.h>
+#include <math.h>
+
+
+int main () {
+
+   //int x = 2;
+   float x = 45; //3.14
+   //int x = -3;
+
+   //x = sqrt(x); //square root %d
+   //x = pow(x, 4); //raised to a given power %d
+   //x = round(x); //round up %f
+   //x = ceil(x); //ceil=ceiling will round up 3.14%f
+   //x = floor(x); //round down 3.99 %f
+   //x = abs(x); //absolute value = distance from 0. -3 %d
+   //x = log(x); //natural logarithm 3 %f
+   //x = sin(x); //%f 45
+   //x = cos(x); //%f 45
+   x = tan(x);
+
+   //printf("%d" ,x);
+   printf("%f" ,x);
+
+   return 0;
+}
+----- circle calculator program-----------
+#include <stdio.h>
+#include <math.h>
+
+
+int main () {
+
+  // CIRCLE CALC PROGRAM  
+    
+  double radius = 0.0;
+  double area = 0.0;
+  double surfaceArea = 0.0;
+  double volume = 0.0;
+  const double PI = 3.1415926;
+
+  printf("Enter the radius: ");
+  scanf("%lf", &radius);
+
+  area = PI * pow(radius, 2); //radius * radius
+  printf("Area: %.2lf\n", area);
+
+  surfaceArea = 4 * (PI * pow(radius, 2)); // PI * area
+  printf("Surface Area: %.2lf\n", surfaceArea);
+
+  volume = (4.0 / 3.0) * PI *pow(radius, 3);
+  printf("Volume: %.2lf\n", volume);
+
+   return 0;
+}
+----------compound interest calculator----------
+#include <stdio.h>
+#include <math.h>
+
+
+int main () {
+
+  //COMPOUND INTEREST CALCULATOR
+
+  double principal = 0.0; //P
+  double rate = 0.0; //r
+  int years = 0; //t
+  int timesCompounded = 0; //n
+  double total = 0.0;
+  char currency = '$';
+
+
+  printf("Compound Interest Calculator\n");
+
+  printf("Enter the principal (P): ");
+  scanf("%lf", &principal);
+
+  printf("Enter the interest rate %% (r): ");
+  scanf("%lf", &rate);
+  rate = rate / 100;
+
+  printf("Enter the # of years (t): ");
+  scanf("%d", &years);
+
+  printf("Enter the # of times compunded per year (n): ");
+  scanf("%d", &timesCompounded);
+  
+  
+  total = principal * pow(1 + rate / timesCompounded, timesCompounded * years);
+  printf("After %d years, the total will be %c%.2lf\n", years, currency, total);
+
+   return 0;
+}
+---------if statements-----------
+#include <stdio.h>
+
+int main () {
+
+    //if statement = Do some code if a condition is true.
+   //                If the condition is false, don't do it.
+
+   int age =70;
+
+   printf("Enter your age: ");
+   scanf("%d", &age);
+   
+   if(age >= 65){
+        printf("You are a senior");
+   }
+   else if(age >= 18){
+        printf("You are an adult");
+   }
+   else if(age < 0){
+        printf("You haven't been born yet");
+   }
+   else if (age == 0){
+        printf("You are a new born");    
+   }
+   else{
+        printf("You are a child");
+   }
+
+   return 0;
+}
+---bool---
+#include <stdio.h>
+#include <stdbool.h>
+
+int main () {
+
+    bool isStudent = 0;
+
+    if(isStudent){
+        printf("You are a student");
+    }
+    else{
+        printf("You are NOT a student");
+    }
+
+   return 0;
+}
+---string---
+#include <stdio.h>
+#include <string.h>
+
+int main () {
+
+    char name [50] = "";
+
+    printf("Enter your name: ");
+    fgets(name, sizeof(name), stdin);
+    name[strlen(name) -1] = '\0';
+
+    if(strlen(name) == 0){
+        printf("You did not enter your name");
+    }
+    else{
+        printf("Hello %s", name);
+    }
+
+   return 0;
+}
+--------------weight Converter program-----------
+My Attempt :D
+#include <stdio.h>
+
+int main () {
+
+    //Weight Converter Program
+    int choice = 0;
+    float weight = 0.0f;
+    float num = 0.0f;
+
+    printf("Weight Conversion Calculator\n");
+    printf("1. Kilograms to Pounds\n");
+    printf("2. Pounds to Kilograms\n");
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &choice);
+
+    if(choice ==1){
+        printf("Enter weight in kilograms: ");
+        scanf("%f", &weight);
+        num = weight * 2.20462;
+        printf("%.2f kilograms is equal to %.2f pounds", weight, num);
+    }
+    else if(choice ==2){
+        printf("Enter weight in pounds: ");
+        scanf("%f", &weight);
+        num = weight * 0.4536;
+        printf("%.2f pounds is equal to %.2f kilograms", weight, num);
+    }
+    else{
+        printf("Invalid! Choose 1 or 2: ");
+        //scanf("%d", &choice); //wanted to loop it but don't know how yet
+    }
+
+   return 0;
+}
+---- ideal way ---
+#include<stdio.h>
+
+int main(){
+
+    //Weight Converter Program
+    int choice = 0;
+    float kilograms = 0.0f;
+    float pounds = 0.0f;
+
+    printf("Weight Conversion Calculator\n");
+    printf("1. Kilograms to Pounds\n");
+    printf("2. Pounds to Kilograms\n");
+    printf("Enter your choice (1 or 2): ");
+    scanf("%d", &choice);
+
+    if(choice == 1){
+        //Kilograms to Pounds
+        printf("Enter weight in kilograms: ");
+        scanf("%f", &kilograms);
+        pounds = kilograms * 2.20462;
+        printf("%.2f kilograms is equal to %.2f pounds", kilograms, pounds);
+    }
+    else if(choice ==2){
+        //Pounds to Kilograms
+        printf("Enter weight in pounds: ");
+        scanf("%f", &pounds);
+        kilograms = pounds / 2.20462;
+        printf("%.2f pounds is equal to %.2f kilograms", pounds, kilograms);
+    }
+    else{
+        printf("Invalid Choice! Please enter 1 or 2.");
+    }
+
+    return 0;
+}
+--------------------Temperature Conversion Program----------------------------
+My Attempt :D
+
+#include<stdio.h>
+
+int main(){
+
+    //Temperature Conversion Program
+    char temp = '\0';
+    float Celcius = 0.0f;
+    float Fahrenheit = 0.0f;
+
+    printf("Temperature Conversion Program\n");
+    printf("C. Celcius to Fahrenheit\n");
+    printf("F. Fahrenheit to Celcius\n");
+    printf("Is the temp in Celsius (C) or Fahrenheit (F): ");
+    scanf("%c", &temp);
+
+    if(temp == 'C'){
+        //Celcius to Fahrenheit
+        printf("Enter the temperature in Celcius: ");
+        scanf("%f", &Celcius);
+        Fahrenheit = (Celcius * 9/5) + 32;
+        printf("%.1f Celcius is equal to %.1f Fahrenheit", Celcius, Fahrenheit);
+    }
+    else if(temp == 'F'){
+        //Fahrenheit to Celcius
+        printf("Enter the temperature in Fahrenheit: ");
+        scanf("%f", &Fahrenheit);
+        Celcius = (Fahrenheit - 32) * 5/9;
+        printf("%.1f Fahrenheit is equal to %.1f Celcius", Fahrenheit, Celcius);
+    }
+    else{
+        printf("Invalid Selection. Please enter C or F");
+    }
+
+    return 0;
+}
+----------------------Switches------------------
