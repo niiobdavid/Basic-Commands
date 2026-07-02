@@ -1180,3 +1180,523 @@ bool ageCheck(int age){
         return false;
     }*/
 }
+--------While Loop VS Do While Loop---------
+#include <stdio.h>
+
+int main(){
+
+    // while loop = Continue some code WHILE the condition remains true
+    //              Condition must be true for us to enter while loop
+
+    int number = 1;
+/*
+    while(number <= 0){ //this will check the condition first and only enter the loop if that condition is true.
+        printf("Enter a number greater than 0: ");
+        scanf("%d", &number);
+    }
+*/
+    do{ // do this code once, then check the condition at the end.
+        printf("Enter a number greater than 0: ");
+        scanf("%d", &number);
+    }while (number <=0);
+
+
+    return 0;
+}
+--- Example---
+#include <stdio.h>
+#include <string.h>
+
+int main(){
+    
+    char name[15] = "";
+
+    printf("Enter your name: ");
+    fgets(name, sizeof(name), stdin);
+    name[strlen(name) - 1] = '\0';
+
+    while(strlen(name) == 0){
+        printf("Name cannot be empty! Please enter your name: ");
+        fgets(name, sizeof(name), stdin);
+        name[strlen(name) - 1] = '\0';
+    }
+ 
+    printf("Hello %s", name);
+
+    return 0;
+}
+-------example 2-------
+#include <stdio.h>
+#include <stdbool.h>
+
+int main(){
+    
+    bool isRunning = true;
+    char response = '\0';
+
+    /*
+    while(isRunning){
+        printf("You are playing a game\n");
+        printf("Would you like to continue? (Y = yes, N =no): ");
+        scanf(" %c", &response); 
+        
+        if(response != 'Y' && response != 'y'){
+        isRunning = false;
+        }
+    }
+
+    OR
+    
+*/
+    do{
+        printf("You are playing a game\n");
+        printf("Would you like to continue? (Y = yes, N =no): ");
+        scanf(" %c", &response); 
+        
+        if(response != 'Y' && response != 'y'){
+        isRunning = false;
+        }
+    }while(isRunning);
+
+    printf("You exit the game");
+
+    return 0;
+}
+--------For Loop-----------
+#include <stdio.h>
+
+int main(){
+    
+   // for loop = Repeat some code a limited # of times
+   //            for(Initialization; Condition; Update)
+   for(int i = 1; i <= 10; i++){
+    printf("%d\n", i);
+   }
+
+
+    return 0;
+}
+----
+#include <stdio.h>
+
+int main(){
+    
+   // for loop = Repeat some code a limited # of times
+   //            for(Initialization; Condition; Update)
+   for(int i = 10; i >= 0; i--){
+    printf("%d\n", i);
+   }
+   printf("HAPPY NEW YEAR!");
+
+    return 0;
+}
+----
+#include <stdio.h>
+#include <Windows.h> //windows
+//#include <unistd.h> //linux / Mac
+
+int main(){
+    
+   // for loop = Repeat some code a limited # of times
+   //            for(Initialization; Condition; Update)
+   for(int i = 10; i >= 0; i--){
+    Sleep(1000);
+    printf("%d\n", i);
+   }
+   printf("HAPPY NEW YEAR!");
+
+    return 0;
+}
+---- break & continue-----
+#include <stdio.h>
+
+int main(){
+    
+   // break = Break out of a loop (STOP)
+   //continue = Skip current cycle of a loop (SKIP)
+
+   for(int i = 1; i <= 12; i++){
+
+        if(i == 4){
+            continue;
+        }
+        if(i == 12){
+            break;
+        }
+
+        printf("%d\n", i);
+   }
+
+    return 0;
+}
+---------Nested Loops----------
+Instead of this -:
+
+int main(){
+
+   for(int i = 1; i < 10; i++){
+        printf("%d ", i);
+   }
+   printf("\n");
+   
+   for(int i = 1; i < 10; i++){
+        printf("%d ", i);
+   }
+   printf("\n");
+   
+   for(int i = 1; i < 10; i++){
+        printf("%d ", i);
+   }
+   printf("\n");
+
+    return 0;
+}
+----Use this instead-:
+#include <stdio.h>
+
+int main(){
+    
+   for(int i = 1; i < 4; i++){
+        for(int j = 1; j < 10; j++){
+        printf("%d ", j);
+   }
+   printf("\n");
+
+   }
+   
+    return 0;
+}
+------ Rectangle/ square-------
+#include <stdio.h>
+
+int main(){
+
+    int rows = 0;
+    int columns = 0;
+    char symbol = '\0';
+
+    printf("Enter the # of rows: ");
+    scanf("%d", &rows);
+    
+    printf("Enter the # of columns: ");
+    scanf("%d", &columns);
+
+    printf("Enter a symbol: ");
+    scanf(" %c", &symbol);
+
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < columns; j++){
+            printf("%c", symbol);
+        }
+        printf("\n");
+    }
+    
+    return 0;
+}
+----------Pseudo-random Number---------------
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+
+    // Pseudo-random = Appear random but are determined by a
+    //                 mathematical formula that uses a seed value
+    //                 to generate a predictable sequence of numbers.
+    //                 advanced: Mersenne Twister or /dev/random    
+    srand(time(NULL));
+
+//    printf("%d", rand()); //somewhat random numbers based on time
+
+//    printf("%d", RAND_MAX); //maximum random number
+//--
+//    int randomNum = rand() % 2; //random num b/n 0 and 1
+//    int randomNum = (rand() % 2) + 1; // random num b/n 1 and 2
+//    printf("%d", randomNum);
+
+
+    int min = 50;
+    int max = 100;
+
+    int randomNum1 = (rand() % (max - min + 1)) + min;//random num b/n 50 and 100
+    int randomNum2 = (rand() % (max - min + 1)) + min;//Is also the formular to create a pseudo-random number
+    int randomNum3 = (rand() % (max - min + 1)) + min;
+
+    printf("%d %d %d", randomNum1, randomNum2, randomNum3);
+
+    return 0;
+}
+------NUMBER GUESSING GAME----------
+My Attempt :D
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+
+    // NUMBER GUESSING GAME
+    int min = 1;
+    int max = 100;
+    int guess = 0;
+
+    do{
+        printf("Guess a number between 1 - 100: ");
+        scanf("%d", &guess);
+            if (guess > 24){
+                printf("TOO HIGH!\n");
+            }
+            else if (guess < 24){
+                printf("TOO LOW!\n");
+            }
+            else if (guess == 24){
+                printf("CORRECT!\n"
+                    "The answer is 24\n"
+                    "It took you x tries");
+            }
+            else if (guess > 100 || guess < 1){
+                printf("Invalid! Guess a number between 1 - 100");
+            }
+    } while (guess != 24);
+
+    return 0;
+}
+------BEST Ans for NUMBER GUESSING GAME--------
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main(){
+
+    // NUMBER GUESSING GAME
+
+     srand(time(NULL));
+
+    int guess = 0;
+    int tries =0;
+    int min = 1;
+    int max = 100;
+    int answer = (rand() % (max - min +1)) + min;
+
+    printf("*** NUMBER GUESSING GAME***\n");
+    
+    do
+    {
+        printf("Guess a number between %d - %d: ", min, max);
+        scanf("%d", &guess);
+        tries++;
+
+        if(guess < answer){
+            printf("TOO LOW!\n");
+        }
+        else if(guess > answer){
+            printf("TOO HIGH!\n");
+        }
+        else{
+            printf("CORRECT!\n");
+        }
+    } while (guess != answer);
+
+    printf("The answer is %d\n", answer);
+    printf("It took you %d tries.", tries);
+
+    return 0;
+}
+------ROCK PAPER SCISSORS------
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int getComputerChoice();
+int getUserChoice();
+void checkWinner(int userChoice, int computerChoice);
+
+
+int main(){
+
+    //ROCK PAPER SCISSORS
+
+    srand(time(NULL));
+
+    printf("**ROCK PAPER SCISSORS***\n");
+
+
+    int userChoice = getUserChoice();
+    int computerChoice = getComputerChoice();
+
+    switch (userChoice)
+    {
+    case 1:
+        printf("You chose ROCK!\n");
+        break;
+    case 2:
+        printf("You chose PAPER!\n");
+        break;
+    case 3:
+        printf("You chose SCISSORS!\n");
+        break;
+    }
+
+    switch (computerChoice)
+    {
+    case 1:
+        printf("Computer chose ROCK!\n");
+        break;
+    case 2:
+        printf("Computer chose PAPER!\n");
+        break;
+    case 3:
+        printf("Computer chose SCISSORS!\n");
+        break;
+    }
+
+    checkWinner(userChoice, computerChoice);
+
+    return 0;
+}
+
+int getComputerChoice(){
+    return (rand() % 3) + 1;
+}
+int getUserChoice(){
+
+    int choice = 0;
+
+    do
+    {
+        printf("Choose an option\n");
+        printf("1. Rock\n");
+        printf("2. PAPER\n");
+        printf("3. Scissors\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+    } while (choice < 1 || choice > 3);
+    
+    return choice;
+}
+void checkWinner(int userChoice, int computerChoice){
+
+/*   //this works but it's very long... ideal below 
+    if (userChoice == computerChoice)
+    {
+        printf("It's a TIE!\n");
+    }
+    else if (userChoice == 1 && computerChoice == 3)
+    {
+        printf("You WIN!");
+    }
+    else if (userChoice == 2 && computerChoice == 1)
+    {
+        printf("You WIN!");
+    }
+    else if (userChoice == 3 && computerChoice == 2 )
+    {
+        printf("You WIN!");
+    }
+    else{
+        printf("You LOSE!");
+    }*/
+
+
+    if (userChoice == computerChoice)
+    {
+        printf("It's a TIE!\n");
+    }
+    else if ((userChoice == 1 && computerChoice == 3) || 
+             (userChoice == 2 && computerChoice == 1) ||
+             (userChoice == 3 && computerChoice == 2))
+    {
+        printf("You WIN!");
+    }
+    else{
+        printf("You LOSE!");
+    }
+}
+-------Banking Program-------
+#include <stdio.h>
+
+void checkBalance( float balance);
+float deposit();
+float withdraw(float balance);
+
+int main(){
+
+    //BANKING PROGRAM
+    int choice = 0;
+    float balance = 0.0f;
+
+    printf("*** WELCOME TO THE BANK  ***");
+
+    do{
+        printf("\nSelect an option\n");
+        printf("\n1. Check Balance\n");
+        printf("2. Deposit Money\n");
+        printf("3. Withdraw Money\n");
+        printf("4. Exit\n");
+        printf("\nEnter Your choice: ");
+        scanf("%d", &choice);
+
+        switch(choice){
+            case 1:
+                checkBalance(balance);
+                break;
+            case 2:
+                balance += deposit();
+                break;
+            case 3:
+                balance -= withdraw(balance);
+                break;
+            case 4:
+                printf("\nThank You for using the bank\n");
+                break;
+            default:
+                printf("\nInvalid choice! Please select 1 - 4\n");
+        }
+
+    }while(choice != 4);
+
+
+    return 0;
+}
+
+void checkBalance( float balance){
+    printf("\nYour current balance is: $%.2f\n", balance);
+}
+float deposit(){
+
+    float amount = 0.0f;
+
+    printf("\nEnter an amount to deposit: $");
+    scanf("%f", &amount);
+
+    if(amount < 0){
+        printf("\nInvalid amount\n");
+        return 0.0f;
+    }
+    else{
+        printf("Successfully deposited $%.2f\n", amount);
+        return amount;
+    }
+
+    return 0.0f;
+}
+float withdraw(float balance){
+
+    float amount = 0.0f;
+
+    printf("\nEnter amount to withdraw: $");
+    scanf("%f", &amount);
+
+    if(amount < 0){
+        printf("Invalid amount\n");
+        return 0.0f;
+    }
+    else if(amount > balance){
+        printf("Insufficient funds! Your balance is $%.2f\n", balance);
+        return 0.0f;
+    }
+    else{
+        printf("SUccessfully withdrew $%.2f\n", amount);
+        return amount;
+    }
+}
