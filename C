@@ -2376,7 +2376,7 @@ int main(){
     
     return 0;
 }
------------MALLOC-------------
+-----------MALLOC()-------------
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -2410,6 +2410,122 @@ int main(){
     
     return 0;
 }
+------------CALLOC()------------------
+#include <stdio.h>
+#include <stdlib.h>
 
+int main(){
 
+    // calloc() = Contagious Allocation.
+    //            Allocates memory dynamically and sets all allocated bytes to 0.
+    //            malloc() is faster, but calloc() leads to less bugs
+    //            calloc(#, size)
+    
+    int number = 0;
+    printf("Enter the number of players: ");
+    scanf("%d", &number);
 
+    int *scores = calloc(number, sizeof(int));
+
+    if(scores == NULL){
+        printf("Memory allocation failed!");
+        return 1;
+    }
+ 
+    for(int i = 0; i < number; i++){
+        printf("Enter score #%d: ", i + 1);
+        scanf("%d", &scores[i]);
+    }
+
+    for(int i = 0; i < number; i++){
+        printf("%d ", scores[i]);
+    }
+
+    free(scores);
+    scores = NULL;
+    
+    return 0;
+}
+----------REALLOC------------
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+
+    // realloc() = Reallocation.
+    //             Resize all previously allocated memory
+    //             realloc(ptr, bytes)
+    
+    int number = 0;
+    printf("Enter the number of prices: ");
+    scanf("%d", &number);
+
+    float*prices = malloc(number * sizeof(float));
+
+    if(prices == NULL){
+        printf("Memory allocation  failed!\n");
+        return 1;
+    }
+
+    for(int i = 0; i < number; i++){
+        printf("Enter price #%d: ", i + 1 );
+        scanf("%f", &prices[i]);
+    }
+
+    int newNumber = 0;
+    printf("Enter a new number of prices: ");
+    scanf("%d", &newNumber);
+
+    float *temp = realloc(prices, newNumber * sizeof(float));
+
+    if(temp == NULL){
+        printf("Could not reallocate memory!\n");
+    }
+    else{
+        prices = temp;
+        temp = NULL;
+
+        for(int i = number; i < newNumber; i++){
+            printf("Enter price #%d: ", i + 1 );
+            scanf("%f", &prices[i]);
+        }
+
+        for(int i = 0; i < newNumber; i++){
+            printf("$%.2f ", prices[i]);
+        }
+    }
+
+    free(prices);
+    prices = NULL;
+    
+    return 0;
+}
+-----------DIGITAL CLOCK-------------
+#include <stdio.h>
+#include <time.h>
+#include <stdbool.h>
+#include <windows.h> //#include <unistd.h>
+
+int main(){
+
+    // DIGITAL CLOCK
+
+    time_t rawtime = 0; // Jan 1 1970 (Epoch)
+    struct tm *pTime = NULL;
+    bool isRunning = true;
+
+    printf("DIGITAL CLOCK\n");
+
+    while (isRunning){
+       
+       time(&rawtime);
+
+       pTime = localtime(&rawtime);
+
+       printf("\r%02d:%02d:%02d", pTime->tm_hour, pTime->tm_min, pTime->tm_sec);
+
+       Sleep(1000); 
+    }
+    
+    return 0;
+}
