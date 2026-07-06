@@ -96,6 +96,8 @@ Basic Linux commands
 | `tar`           | Archive/extract files      | `tar -xvf file.tar`        |
 | `zip` / `unzip` | Compress/extract zip files | `unzip file.zip`           |
 | `sudo`          | Run command as admin       | `sudo apt update`          |
+| `truncate -s `  | Change file size           |`truncate -s 0 filename.txt`|
+| `touch -t`      | Change date/time           | `touch -t 202607061200 filename.txt `|
 
 ### Useful Shortcuts
 
