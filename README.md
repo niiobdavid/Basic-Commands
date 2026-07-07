@@ -100,6 +100,7 @@ Basic Linux commands
 | `touch -t`      | Change date/time           | `touch -t 202607061200 filename.txt `|
 
 "git log --format='%H' -n5" | script displays ids of last 5 commits
+"git check-ignore .* * |  existing files ignored by your Git repository
 
 ### Useful Shortcuts
 
