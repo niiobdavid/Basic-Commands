@@ -99,6 +99,8 @@ Basic Linux commands
 | `truncate -s `  | Change file size           |`truncate -s 0 filename.txt`|
 | `touch -t`      | Change date/time           | `touch -t 202607061200 filename.txt `|
 
+"git log --format='%H' -n5" | script displays ids of last 5 commits
+
 ### Useful Shortcuts
 
 * `Ctrl + C` → Stop current command
