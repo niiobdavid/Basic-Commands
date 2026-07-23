@@ -94,3 +94,403 @@ void hello(void)
 	puts("helps\n");
 }
 ---------Recursions--------
+#include <stdio.h>
+
+void	countdown(int n)
+{
+	//base case- when the function returns (no more recursive calls)
+	if (n < 0)
+	{
+		return;
+	}
+	printf("%d\n", n);
+	return countdown(n -1);// recursive case - Calling the function again, solving a smaller problem
+}
+int	main()
+{
+	countdown(10);
+	return (0);
+}
+----
+#include <stdio.h>
+
+void	countdown(unsigned int n)
+{
+	//base case- when the function returns (no more recursive calls)
+	if (n < 0)
+	{
+		return;
+	}
+	printf("%d\n", n);
+	return countdown(n -1);// recursive case - Calling the function again, 
+	//solving a smaller problem
+}
+int	main()
+{
+	countdown(-10);
+	return (0);
+}
+//-10 when treated as unsigned int, will actually rep a positive number.
+//If recursed too many times, then we get a 'stack overflow'.
+//That's why it crashes.
+---
+#include <stdio.h>
+#include <assert.h>
+
+void	countdown(unsigned int n)
+{
+	assert(n >=0 && "n was not greater than 0");
+	//base case- when the function returns (no more recursive calls)
+	if (n < 0)
+	{
+		return;
+	}
+	printf("%d\n", n);
+	return countdown(n -1);// recursive case - Calling the function again, 
+	//solving a smaller problem
+}
+int	main()
+{
+	countdown(-10);
+	return (0);
+}
+//-10 when treated as unsigned int, will actually rep a positive number.
+//If recursed too many times, then we get a 'stack overflow'.
+//That's why it crashes.
+
+--------Asserts
+#include <stdio.h>
+#include <assert.h>
+
+void	countdown(int n)
+{
+	assert(n >=0 && "n was not greater than 0");
+	//base case- when the function returns (no more recursive calls)
+	if (n < 0)
+	{
+		return;
+	}
+	printf("%d\n", n);
+	return countdown(n -1);// recursive case - Calling the function again, 
+	//solving a smaller problem
+}
+int	main()
+{
+	countdown(-10);
+	return (0);
+}
+//terminal output:
+//prog: hello.c:6: countdown: Assertion `n >=0 && "n was not greater than 0"' failed.
+//zsh: IOT instruction (core dumped)  ./prog
+
+-----Conditions (if, else if, else
+#include <stdio.h>
+
+int	main()
+{
+	int x = 42;
+	//int x = -42; if (x >= 0 || x <50)
+	if (x >= 0 && x <50){
+		printf("x is in our range\n");
+	}
+
+	return (0);
+}
+------
+#include <stdio.h>
+
+int	main()
+{
+	int x = 0;
+	//int x = 42;
+	//int x = -42;
+	if (x > 0 ){
+		printf("x is positive\n");
+	}
+	else if (x ==0){
+		printf("x is 0\n");
+	}
+	else{ 
+		printf("x is negative\n");
+	}
+
+	return (0);
+}
+
+----Reading user input with scanf---------------
+#include <stdio.h>
+
+int	main()
+{
+	int x = 0;
+	puts("enter a number for x: ");
+	scanf("%d", &x);
+	
+	if (x > 0 ){
+		printf("x is positive\n");
+	}
+	else if (x ==0){
+		printf("x is 0\n");
+	}
+	else{ 
+		printf("x is negative\n");
+	}
+
+	return (0);
+}
+--------address of (& operator)------------
+#include <stdio.h>
+
+int	main()
+{
+	int x = 42;
+
+	//%p Prints out the address
+	printf("%p\n", &x);
+	//If you want the value in &(x)
+	printf("%d\n", *(&x));
+	return (0);
+}
+------Pointers (Creating pointer and dereferencing)-------
+#include <stdio.h>
+
+int	main()
+{
+	int x = 42;
+	printf("the address of x is: %p\n", &x);
+
+	//Creating a pointer
+	int* px = &x;
+	int* px2 = &x;
+	printf("px is: %p\n", px);
+	printf("px2 is: %p\n", px2);
+
+	//Accessing the value, tho the thing we point to
+	printf("*px, the thing we point to is %d\n", *px);
+	printf("*px2, the thing we point to is %d\n", *px2);
+
+	//notice that both px and px2 point to the same address of x,
+	//and both *px and *px2 point to the number stored in x.
+	return (0);
+}
+---------Malloc and Free (Dynamic Memory Allocation)---------
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main()
+{
+	int sizeOfArray = 0;
+	int* dynamicArray = malloc(sizeof(int)*sizeOfArray);
+
+	scanf("%d", &sizeOfArray);
+	for (int i = 0; i < sizeOfArray; i++)
+	{
+		dynamicArray[i] = 0;
+	}
+	free(dynamicArray);
+	
+	return (0);
+}
+-------------Pass by value Semantics in C-----------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+//Pass by value = makes copies of variables when passed into functions
+void	SetValue(int new_value)
+{
+	new_value = 9999;
+}
+
+int	main()
+{
+	int x;
+
+	x = 42;
+	SetValue(x);
+	printf("x is: %d\n", x);
+//x was passed into the function so it replaced new_value, 
+//thus it'll print 42
+	
+	return (0);
+}
+#include <stdio.h>
+#include <stdlib.h>
+
+void	SetValue(int* new_value)
+{
+	*new_value = 9999;
+}
+
+int	main()
+{
+	int x;
+
+	x = 42;
+	SetValue(&x);
+	printf("x is: %d\n", x);
+//it'll print 9999
+
+	return (0);
+}
+-----------C-Strings and String Literals-----------
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main()
+{
+	char* a = "hello";// this is a literal string (string literal)
+					//it is read-only so individual letters cannot be changed.
+	
+	puts(a);//prints the string "hello"
+
+	printf("a[0] = %c\n", a[0]);//prints only the first letter "h"
+	return (0);
+}
+----
+#include <stdio.h>
+#include <stdlib.h>
+
+int	main()
+{
+	char a[] = "hello";// this is an array
+					//individual letters can be changed.
+	
+	puts(a);//prints the string "hello"
+
+	a[0] = 'b';
+	printf("a[0] = %c\n", a[0]);//changes only the first letter from "h" to "b"
+	printf("the array char a[] is now %s", a); 
+;
+	return (0);
+}
+-------strlen-----
+#include <stdio.h>
+#include <string.h>
+
+int	main()
+{
+	char a[] = "hello";// this is an array
+					//individual letters can be changed.
+	
+	puts(a);//prints the string "hello"
+
+	a[0] = 'b';
+	printf("a[0] = %c\n", a[0]);//changes only the first letter from "h" to "b"
+	printf("the array char a[] is now %s", a);
+
+	printf("length of string a is: %ld\n", strlen(a));
+
+	return (0);
+}
+----------STRUCT-----------
+#include <stdio.h>
+#include <string.h>
+
+struct student{
+	int age;
+	int id;
+	char averageGrade;
+};
+
+int	main()
+{
+	struct student mike;
+	mike.age = 500;
+	mike.id = 123;
+	mike.averageGrade = 'A';
+	printf("mike.age          : %d\n", mike.age);
+	printf("mike.id           : %d\n", mike.id);
+	printf("mike.averageGrade : %d\n", mike.averageGrade);
+
+	return (0);
+}
+---Typedef---
+#include <stdio.h>
+#include <string.h>
+
+typedef struct student{
+	int age;
+	int id;
+	char averageGrade;
+}student_t;
+
+void printStudent(student_t* s){
+	printf("s.age          : %d\n", s->age);
+	printf("s.id           : %d\n", (*s).id);
+	printf("s.averageGrade : %d\n", s->averageGrade);
+}
+
+int	main()
+{
+	student_t mike;
+	mike.age = 500;
+	mike.id = 123;
+	mike.averageGrade = 'A';
+	printStudent(&mike);
+
+	return (0);
+}
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+typedef struct student{
+	int age;
+	int id;
+	char averageGrade;
+}student_t;
+
+void printStudent(student_t* s){
+	printf("s.age          : %d\n", s->age);
+	printf("s.id           : %d\n", (*s).id);
+	printf("s.averageGrade : %d\n", s->averageGrade);
+}
+
+int	main()
+{
+	student_t class[500];
+
+	student_t* dynamicclass = malloc(sizeof(student_t)*700);
+
+	free(dynamicclass);
+
+	return (0);
+}
+-----------Linked list-----------
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node{
+	int data;
+	struct node* next;
+}node_t;
+
+int	main()
+{
+	node_t one;
+	node_t two;
+	node_t three;
+
+	one.data = 1;
+	one.next = &two;
+	
+	two.data = 2;
+	two.next = &three;
+	
+	three.data = 3;
+	three.next = NULL;
+	
+	node_t* iter = &one;
+	while(iter != NULL){
+		printf("data: %d\n", iter->data);
+		iter = iter -> next;
+	}
+
+	return (0);
+}
+
+
+
+
+
