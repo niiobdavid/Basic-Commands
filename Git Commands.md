@@ -1,5 +1,11 @@
 # Basic Git Commands
 
+## Install Git
+```bash
+sudo dnf update
+sudo dnf install git -y
+```
+
 | Command                          | Purpose                                  | Example                                                  |
 | -------------------------------- | ---------------------------------------- | -------------------------------------------------------- |
 | `git --version`                  | Check Git version                        | `git --version`                                          |
