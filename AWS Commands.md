@@ -1,0 +1,176 @@
+
+# ☁️ AWS CLI Commands
+
+## 1. Basic AWS Commands
+
+| Command | Description |
+|---------|-------------|
+| `aws --version` | Check AWS CLI version |
+| `aws configure` | Configure AWS credentials and region |
+| `aws configure list` | Show current AWS configuration |
+| `aws configure list-profiles` | List configured AWS profiles |
+| `aws sts get-caller-identity` | Show AWS account and authenticated identity |
+| `aws help` | Display AWS CLI help |
+| `aws s3 help` | Display S3 command help |
+
+---
+
+## 2. AWS S3 - Storage
+
+Amazon S3 (Simple Storage Service) is used to store files, backups, images, and other objects.
+
+| Command | Description |
+|---------|-------------|
+| `aws s3 ls` | List S3 buckets |
+| `aws s3 ls s3://my-bucket` | List files in a bucket |
+| `aws s3 mb s3://my-bucket` | Create an S3 bucket |
+| `aws s3 cp file.txt s3://my-bucket/` | Upload a file to S3 |
+| `aws s3 cp s3://my-bucket/file.txt .` | Download a file from S3 |
+| `aws s3 sync ./folder s3://my-bucket/` | Sync a local folder to S3 |
+| `aws s3 rm s3://my-bucket/file.txt` | Delete a file from S3 |
+| `aws s3 rb s3://my-bucket` | Delete an empty S3 bucket |
+
+---
+
+## 3. AWS EC2 - Virtual Servers
+
+Amazon EC2 (Elastic Compute Cloud) provides virtual servers in the AWS cloud.
+
+| Command | Description |
+|---------|-------------|
+| `aws ec2 describe-instances` | List EC2 instances |
+| `aws ec2 describe-regions` | List AWS regions |
+| `aws ec2 describe-vpcs` | List Virtual Private Clouds |
+| `aws ec2 describe-subnets` | List subnets |
+| `aws ec2 describe-security-groups` | List security groups |
+| `aws ec2 describe-volumes` | List EBS storage volumes |
+| `aws ec2 describe-key-pairs` | List EC2 key pairs |
+| `aws ec2 start-instances --instance-ids ID` | Start an EC2 instance |
+| `aws ec2 stop-instances --instance-ids ID` | Stop an EC2 instance |
+| `aws ec2 reboot-instances --instance-ids ID` | Restart an EC2 instance |
+
+---
+
+## 4. AWS IAM - Users and Permissions
+
+AWS Identity and Access Management (IAM) controls access to AWS resources.
+
+| Command | Description |
+|---------|-------------|
+| `aws iam list-users` | List IAM users |
+| `aws iam list-groups` | List IAM groups |
+| `aws iam list-roles` | List IAM roles |
+| `aws iam list-policies` | List IAM policies |
+| `aws iam get-user` | Get current IAM user details |
+| `aws iam create-user --user-name USER` | Create an IAM user |
+| `aws iam delete-user --user-name USER` | Delete an IAM user after removing dependencies |
+| `aws iam list-access-keys --user-name USER` | List a user's access key metadata |
+
+---
+
+## 5. AWS VPC - Networking
+
+Amazon VPC (Virtual Private Cloud) allows you to manage networking resources within AWS.
+
+| Command | Description |
+|---------|-------------|
+| `aws ec2 describe-vpcs` | List VPCs |
+| `aws ec2 describe-subnets` | List subnets |
+| `aws ec2 describe-route-tables` | List route tables |
+| `aws ec2 describe-internet-gateways` | List internet gateways |
+| `aws ec2 describe-nat-gateways` | List NAT gateways |
+| `aws ec2 describe-network-acls` | List network ACLs |
+| `aws ec2 describe-security-groups` | List security groups |
+| `aws ec2 describe-addresses` | List Elastic IP addresses |
+
+---
+
+## 6. AWS CloudWatch - Monitoring
+
+Amazon CloudWatch provides monitoring, metrics, alarms, and logs for AWS resources.
+
+| Command | Description |
+|---------|-------------|
+| `aws cloudwatch list-metrics` | List CloudWatch metrics |
+| `aws cloudwatch describe-alarms` | List CloudWatch alarms |
+| `aws logs describe-log-groups` | List log groups |
+| `aws logs describe-log-streams --log-group-name NAME` | List log streams |
+| `aws logs tail NAME` | Display recent logs |
+
+---
+
+## 7. AWS Lambda - Serverless
+
+AWS Lambda allows you to execute code without managing servers.
+
+| Command | Description |
+|---------|-------------|
+| `aws lambda list-functions` | List Lambda functions |
+| `aws lambda get-function --function-name NAME` | Get Lambda function details |
+| `aws lambda delete-function --function-name NAME` | Delete a Lambda function |
+| `aws lambda list-layers` | List Lambda layers |
+
+---
+
+## 8. AWS RDS - Databases
+
+Amazon Relational Database Service (RDS) is used to manage relational databases in AWS.
+
+| Command | Description |
+|---------|-------------|
+| `aws rds describe-db-instances` | List RDS database instances |
+| `aws rds describe-db-clusters` | List database clusters |
+| `aws rds describe-db-snapshots` | List database snapshots |
+| `aws rds describe-db-subnet-groups` | List database subnet groups |
+
+---
+
+## 9. AWS EKS and ECS - Containers
+
+Amazon EKS and ECS are AWS services used for managing containerized applications.
+
+| Command | Description |
+|---------|-------------|
+| `aws eks list-clusters` | List EKS Kubernetes clusters |
+| `aws eks describe-cluster --name NAME` | Show EKS cluster details |
+| `aws ecs list-clusters` | List ECS clusters |
+| `aws ecs list-tasks --cluster NAME` | List ECS tasks |
+| `aws ecs list-services --cluster NAME` | List ECS services |
+
+---
+
+## 10. AWS CLI Troubleshooting
+
+Useful commands for troubleshooting AWS configuration, permissions, networking, and cloud resources.
+
+| Command | Description |
+|---------|-------------|
+| `aws --version` | Verify AWS CLI installation |
+| `aws configure list` | Check configured credentials and region |
+| `aws sts get-caller-identity` | Verify authenticated AWS identity |
+| `aws s3 ls --debug` | Debug an S3 request |
+| `aws ec2 describe-instances --region eu-central-1` | Check EC2 instances in a specific region |
+| `aws ec2 describe-instance-status --include-all-instances` | Check EC2 instance status |
+| `aws cloudwatch describe-alarms` | Check CloudWatch alarms |
+| `aws logs describe-log-groups` | Find available log groups |
+
+## 📝 NB
+- Replace `ID`, `NAME`, `USER`, and `my-bucket` with actual AWS resource values.
+## 📝 NextWork
+
+
+
+### Create EKSctl cluster
+eksctl create cluster \
+--name nextwork-eks-cluster \
+--nodegroup-name nextwork-nodegroup \
+--node-type t3.micro \
+--nodes 3 \
+--nodes-min 1 \
+--nodes-max 3 \
+--version 1.33
+--region your-region-code
+### Download and install eksctl on your EC2 instance
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv -v /tmp/eksctl /usr/local/bin
+eksctl version
