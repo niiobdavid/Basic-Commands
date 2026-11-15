@@ -161,17 +161,19 @@ Useful commands for troubleshooting AWS configuration, permissions, networking, 
 
 
 ### Create EKSctl cluster
-`eksctl create cluster \
---name nextwork-eks-cluster \
+```bash
+eksctl create cluster --name nextwork-eks-cluster \
 --nodegroup-name nextwork-nodegroup \
 --node-type t3.micro \
 --nodes 3 \
 --nodes-min 1 \
 --nodes-max 3 \
---version 1.33
---region your-region-code`
+--version 1.33 \
+--region your-region-code
+```
 ### Download and install eksctl on your EC2 instance
-`curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-sudo mv -v /tmp/eksctl /usr/local/bin`
-
+```bash
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv -v /tmp/eksctl /usr/local/bin
+```
 `eksctl version`
