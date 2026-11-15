@@ -153,14 +153,72 @@ Useful commands for troubleshooting AWS configuration, permissions, networking, 
 | `aws ec2 describe-instance-status --include-all-instances` | Check EC2 instance status |
 | `aws cloudwatch describe-alarms` | Check CloudWatch alarms |
 | `aws logs describe-log-groups` | Find available log groups |
-
 ## 📝 NB
-- Replace `ID`, `NAME`, `USER`, and `my-bucket` with actual AWS resource values.
+- Replace `ID`, `NAME`, `USER`, and `my-bucket` with actual AWS resource values
+
+## 11. AWS ECR - Elastic Container Registry
+
+Amazon ECR (Elastic Container Registry) is a fully managed AWS container registry used to store, manage, and deploy Docker container images.
+
+| Command | Description |
+|---------|-------------|
+| `aws ecr describe-repositories` | List ECR repositories |
+| `aws ecr create-repository --repository-name my-repo` | Create an ECR repository |
+| `aws ecr delete-repository --repository-name my-repo` | Delete an empty ECR repository |
+| `aws ecr delete-repository --repository-name my-repo --force` | Delete an ECR repository and its images |
+| `aws ecr list-images --repository-name my-repo` | List images in a repository |
+| `aws ecr describe-images --repository-name my-repo` | Show image details |
+| `aws ecr batch-delete-image --repository-name my-repo --image-ids imageTag=latest` | Delete an image by tag |
+| `aws ecr get-login-password --region eu-central-1` | Generate a Docker authentication password |
+| `aws ecr get-repository-policy --repository-name my-repo` | View repository permissions |
+| `aws ecr describe-image-scan-findings --repository-name my-repo --image-id imageTag=latest` | View available image vulnerability scan results |
+| `aws ecr put-lifecycle-policy --repository-name my-repo --lifecycle-policy-text file://policy.json` | Configure image lifecycle rules |
+| `aws ecr get-lifecycle-policy --repository-name my-repo` | View image lifecycle rules |
+| `--image-scanning-configuration scanOnPush=true \` | Scan each image for known vulnerabilities whenever it’s pushed |
+
+---
+
+### Docker Login to AWS ECR
+
+```bash
+aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com
+```
+
+### Build a Docker Image
+
+```bash
+docker build -t my-app .
+```
+
+### Tag the Docker Image
+
+```bash
+docker tag my-app:latest ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/my-repo:latest
+```
+
+### Push the Docker Image to ECR
+
+```bash
+docker push ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/my-repo:latest
+```
+
+### Pull a Docker Image from ECR
+
+```bash
+docker pull ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/my-repo:latest
+```
+
+---
+
+**Note:** Replace `ACCOUNT_ID`, `my-repo`, and `eu-central-1` with your AWS account ID, repository name, and AWS region. Docker must be installed, and your AWS identity must have the required ECR permissions.
+
+
+.
 ## 📝 NextWork
 
 
 
-### Create EKSctl cluster
+#### Create EKSctl cluster
 ```bash
 eksctl create cluster --name nextwork-eks-cluster \
 --nodegroup-name nextwork-nodegroup \
@@ -171,9 +229,16 @@ eksctl create cluster --name nextwork-eks-cluster \
 --version 1.33 \
 --region your-region-code
 ```
-### Download and install eksctl on your EC2 instance
+#### Download and install eksctl on your EC2 instance
 ```bash
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv -v /tmp/eksctl /usr/local/bin
 ```
 `eksctl version`
+
+#### Create a new Amazon ECR repository
+```bash
+aws ecr create-repository \
+  --repository-name nextwork-flask-backend \
+  --image-scanning-configuration scanOnPush=true \
+```
