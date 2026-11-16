@@ -131,13 +131,16 @@ ls
 
 
 download, extract, and install eksctl:
+```bash
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv -v /tmp/eksctl /usr/local/bin
+```
 
 Verify: 
-eksctl version
+`eksctl version`
 
 Create an eks cluster:
+```bash
 eksctl create cluster \
   --name nextwork-eks-cluster \
   --nodegroup-name nextwork-nodegroup \
@@ -147,37 +150,42 @@ eksctl create cluster \
   --nodes-max 3 \
   --version 1.33 \
   --region your-region-code
-
+```
 Install Git:
+```bash
 sudo dnf update
 sudo dnf install git -y
+```
 
 Verify Git Version:
-git --version
+`git --version`
 
 Configure Git:
+```bash
 git config --global user.name "yourname"
 git config --global user.email "email"
-
+```
 Clone Git:
-git clone your-github-url
+`git clone your-github-url`
 
 Install Docker:
-sudo yum install -y docker
+`sudo yum install -y docker`
 
 Start Docker:
-sudo service docker start
+`sudo service docker start`
 
 Add ec2-user to the Docker group:
-sudo usermod -a -G docker ec2-user
+`sudo usermod -a -G docker ec2-user`
 
 Make sure your ec2-user has been added to the Docker group:
-groups ec2-user
+`groups ec2-user`
 
 Build a container image:
-docker build -t your-backend-image-folder .
+`docker build -t your-backend-image-folder .`
 
 Create a new Amazon ECR repository:
+```bash
 aws ecr create-repository \
   --repository-name nextwork-flask-backend \
-  --image-scanning-configuration scanOnPush=true \
+  --image-scanning-configuration scanOnPush=true
+```
