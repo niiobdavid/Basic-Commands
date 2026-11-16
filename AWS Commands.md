@@ -133,9 +133,12 @@ Amazon EKS and ECS are AWS services used for managing containerized applications
 |---------|-------------|
 | `aws eks list-clusters` | List EKS Kubernetes clusters |
 | `aws eks describe-cluster --name NAME` | Show EKS cluster details |
+| `eksctl delete cluster --name NAME` | Delete EKS cluster |
 | `aws ecs list-clusters` | List ECS clusters |
 | `aws ecs list-tasks --cluster NAME` | List ECS tasks |
 | `aws ecs list-services --cluster NAME` | List ECS services |
+| `aws ecs stop-task --cluster NAME --task TASK-ID` | Stop any leftover tasks |
+| `aws ecs delete-service --cluster my-cluster --service my-service --force` | Delete service |
 
 ---
 
