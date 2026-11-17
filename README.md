@@ -189,3 +189,65 @@ aws ecr create-repository \
   --repository-name nextwork-flask-backend \
   --image-scanning-configuration scanOnPush=true
 ```
+Create Deployment manifest file:
+```bash
+cat << EOF > flask-deployment.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextwork-flask-backend
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nextwork-flask-backend
+  template:
+    metadata:
+      labels:
+        app: nextwork-flask-backend
+    spec:
+      containers:
+        - name: nextwork-flask-backend
+          image: your-ecr-image-url
+          ports:
+            - containerPort: 8080
+EOF
+```
+Create Service manifest file:
+```bash
+cat << EOF > flask-service.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextwork-flask-backend
+spec:
+  selector:
+    app: nextwork-flask-backend
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+EOF
+```
+Install kubectl:
+```bash
+sudo curl -o /usr/local/bin/kubectl \
+https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.0/2024-09-12/bin/linux/amd64/kubectl
+```
+Grant permission:
+```bash
+sudo chmod +x /usr/local/bin/kubectl
+```
+Apply the manifests:
+```bash
+kubectl apply -f flask-deployment.yaml
+kubectl apply -f flask-service.yaml
+```
+Set up access to cluster nodes:
+```bash
+eksctl create iamidentitymapping --cluster nextwork-eks-cluster --arn your-user-arn --group system:masters --username admin --region your-region-code
+```
