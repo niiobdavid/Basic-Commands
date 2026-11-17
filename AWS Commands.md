@@ -351,16 +351,21 @@ https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_b
 
 Initalize Terraform:
 `terraform init`
+
 Plan Terraform configuration:
 `terraform plan`
+
 Apply Terraform Configuration:
 `terraform apply`
-Downloading AWS CLI (win)
+
+Downloading AWS CLI (win):
 ```bash
 Invoke-WebRequest -Uri "https://awscli.amazonaws.com/AWSCLIV2.msi" -OutFile "AWSCLIV2.msi"
 Start-Process msiexec.exe -ArgumentList "/i AWSCLIV2.msi" -Wait
 ```
+
 Configure the AWS CLI:
 `aws configure`
+
 Delete Resources with Terraform:
 `terraform destroy`
