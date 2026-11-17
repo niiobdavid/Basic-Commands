@@ -310,6 +310,68 @@ History of commits:
 Changes staged:
 `git diff --staged`
 
+codeartifact-nextwork-consumer-policy: 
+```bash
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "codeartifact:GetAuthorizationToken",
+                "codeartifact:GetRepositoryEndpoint",
+                "codeartifact:ReadFromRepository"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "sts:GetServiceBearerToken",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "sts:AWSServiceName": "codeartifact.amazonaws.com"
+                }
+            }
+        }
+    ]
+}
+```
+settings.xml:
+```bash
+<settings>
+</settings>
+```
+compile project
+```bash
+mvn -s settings.xml compile
+```
+echo "Hellooooo this is a test package!" > secret-mission.txt
+bundle the file into a package:
+```bash
+tar -czvf secret-mission.tar.gz secret-mission.txt
+```
+Generate Security Hash:
+```bash
+export ASSET_SHA256=$(sha256sum secret-mission.tar.gz | awk '{print $1;}')
+```
+Confirm hash generation:
+`echo $ASSET_SHA256`
+
+Deploy Your Secret Package:
+```bash
+aws codeartifact publish-package-version \
+  --domain nextwork \
+  --repository nextwork-devops-cicd \
+  --format generic \
+  --namespace secret-mission \
+  --package secret-mission \
+  --package-version 1.0.0 \
+  --asset-content secret-mission.tar.gz \
+  --asset-name secret-mission.tar.gz \
+  --asset-sha256 $ASSET_SHA256
+```
+
 # Deploying Kubernetes
 download, extract, and install eksctl:
 ```bash
