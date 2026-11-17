@@ -219,29 +219,148 @@ docker pull ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/my-repo:latest
 .
 ## 📝 NextWork
 
-
-
-#### Create EKSctl cluster
-```bash
-eksctl create cluster --name nextwork-eks-cluster \
---nodegroup-name nextwork-nodegroup \
---node-type t3.micro \
---nodes 3 \
---nodes-min 1 \
---nodes-max 3 \
---version 1.33 \
---region your-region-code
-```
-#### Download and install eksctl on your EC2 instance
+# Deploying Kubernetes
+download, extract, and install eksctl:
 ```bash
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv -v /tmp/eksctl /usr/local/bin
 ```
+
+Verify: 
 `eksctl version`
 
-#### Create a new Amazon ECR repository
+Create an eks cluster:
+```bash
+eksctl create cluster \
+  --name nextwork-eks-cluster \
+  --nodegroup-name nextwork-nodegroup \
+  --node-type t3.micro \
+  --nodes 3 \
+  --nodes-min 1 \
+  --nodes-max 3 \
+  --version 1.33 \
+  --region your-region-code
+```
+Install Git:
+```bash
+sudo dnf update
+sudo dnf install git -y
+```
+
+Verify Git Version:
+`git --version`
+
+Configure Git:
+```bash
+git config --global user.name "yourname"
+git config --global user.email "email"
+```
+Clone Git:
+`git clone your-github-url`
+
+Install Docker:
+`sudo yum install -y docker`
+
+Start Docker:
+`sudo service docker start`
+
+Add ec2-user to the Docker group:
+`sudo usermod -a -G docker ec2-user`
+
+Make sure your ec2-user has been added to the Docker group:
+`groups ec2-user`
+
+Build a container image:
+`docker build -t your-backend-image-folder .`
+
+Create a new Amazon ECR repository:
 ```bash
 aws ecr create-repository \
   --repository-name nextwork-flask-backend \
   --image-scanning-configuration scanOnPush=true
 ```
+Create Deployment manifest file:
+```bash
+cat << EOF > flask-deployment.yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextwork-flask-backend
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nextwork-flask-backend
+  template:
+    metadata:
+      labels:
+        app: nextwork-flask-backend
+    spec:
+      containers:
+        - name: nextwork-flask-backend
+          image: your-ecr-image-url
+          ports:
+            - containerPort: 8080
+EOF
+```
+Create Service manifest file:
+```bash
+cat << EOF > flask-service.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextwork-flask-backend
+spec:
+  selector:
+    app: nextwork-flask-backend
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 8080
+      protocol: TCP
+EOF
+```
+Install kubectl:
+```bash
+sudo curl -o /usr/local/bin/kubectl \
+https://s3.us-west-2.amazonaws.com/amazon-eks/1.31.0/2024-09-12/bin/linux/amd64/kubectl
+```
+Grant permission:
+```bash
+sudo chmod +x /usr/local/bin/kubectl
+```
+Apply the manifests:
+```bash
+kubectl apply -f flask-deployment.yaml
+kubectl apply -f flask-service.yaml
+```
+If error in Applying:
+```bash
+aws eks update-kubeconfig --name cluster-name --region your-region-code
+```
+Set up access to cluster nodes:
+```bash
+eksctl create iamidentitymapping --cluster nextwork-eks-cluster --arn your-user-arn --group system:masters --username admin --region your-region-code
+```
+# Terraform
+Registry's documentation on S3:
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket
+
+Initalize Terraform:
+`terraform init`
+Plan Terraform configuration:
+`terraform plan`
+Apply Terraform Configuration:
+`terraform apply`
+Downloading AWS CLI (win)
+```bash
+Invoke-WebRequest -Uri "https://awscli.amazonaws.com/AWSCLIV2.msi" -OutFile "AWSCLIV2.msi"
+Start-Process msiexec.exe -ArgumentList "/i AWSCLIV2.msi" -Wait
+```
+Configure the AWS CLI:
+`aws configure`
+Delete Resources with Terraform:
+`terraform destroy`
