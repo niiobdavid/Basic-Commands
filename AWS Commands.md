@@ -218,9 +218,19 @@ docker pull ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/my-repo:latest
 
 .
 ## 📝 NextWork
+auth credentials for keypair (win)
+```bash
+icacls "nextwork-keypair.pem" /reset
+icacls "nextwork-keypair.pem" /grant:r "enter-your-username:R"
+icacls "nextwork-keypair.pem" /inheritance:r
+```
+auth credentials for keypair (linux/mac):
+
+`chmod 400 nextwork-keypair.pem`
 
 Connect to your EC2 instance: 
 `ssh -i PATH TO YOUR .PEM FILE ec2-user@YOUR PUBLIC IPV4 DNS`
+
 Install Apache Maven into your EC2 instance:
 ```bash
 wget https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
@@ -231,10 +241,9 @@ echo "export PATH=/opt/apache-maven-3.5.2/bin:$PATH" >> ~/.bashrc
 
 source ~/.bashrc
 ```
+
 Verify Maven:
 `mvn -v`
-
-
 
 Install Java (Amazon Correto 8) into your EC2 instance:
 ```bash
@@ -299,7 +308,7 @@ History of commits:
 `git log`
 
 Changes staged:
-`diff --staged`
+`git diff --staged`
 
 # Deploying Kubernetes
 download, extract, and install eksctl:
