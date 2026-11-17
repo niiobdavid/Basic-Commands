@@ -219,6 +219,88 @@ docker pull ACCOUNT_ID.dkr.ecr.eu-central-1.amazonaws.com/my-repo:latest
 .
 ## 📝 NextWork
 
+Connect to your EC2 instance: 
+`ssh -i PATH TO YOUR .PEM FILE ec2-user@YOUR PUBLIC IPV4 DNS`
+Install Apache Maven into your EC2 instance:
+```bash
+wget https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
+
+sudo tar -xzf apache-maven-3.5.2-bin.tar.gz -C /opt
+
+echo "export PATH=/opt/apache-maven-3.5.2/bin:$PATH" >> ~/.bashrc
+
+source ~/.bashrc
+```
+Verify Maven:
+`mvn -v`
+
+
+
+Install Java (Amazon Correto 8) into your EC2 instance:
+```bash
+sudo dnf install -y java-1.8.0-amazon-corretto-devel
+
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64
+
+export PATH=/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64/jre/bin/:$PATH
+```
+Verify Java 8:
+`java -version`
+
+wget: command not found:
+`sudo yum install wget -y`
+
+Use mvn to generate a Java web app
+```bash
+mvn archetype:generate \
+   -DgroupId=com.nextwork.app \
+   -DartifactId=nextwork-web-project \
+   -DarchetypeArtifactId=maven-archetype-webapp \
+   -DinteractiveMode=false
+```
+
+Modify index.jsp
+```bash
+<html>
+
+<body>
+
+<h2>Hello [[YOURNAME]]!</h2>
+
+<p>This is my NextWork web application working!</p>
+
+</body>
+
+</html>
+```
+
+Install Git:
+```bash
+sudo dnf update
+sudo dnf install git -y
+```
+
+Initiate Git:
+`git init`
+
+Connect local project folder with Github repo:
+`git remote add origin enter your github repo link`
+
+Git Add, Commit, Push
+```bash
+git add . 
+
+git commit -m "Updated index.jsp with new content"
+
+git push -u origin master
+
+```
+History of commits:
+`git log`
+
+Changes staged:
+`diff --staged`
+
 # Deploying Kubernetes
 download, extract, and install eksctl:
 ```bash
