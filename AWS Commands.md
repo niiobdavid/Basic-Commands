@@ -289,6 +289,13 @@ sudo dnf update
 sudo dnf install git -y
 ```
 
+Resetting your Git credentials:
+```bash
+git config --global --unset credential.helper
+git config --local --unset credential.helper
+git remote set-url origin https://<github_username>@github.com/<github_username>/<repository_name>.git
+```
+
 Initiate Git:
 `git init`
 
