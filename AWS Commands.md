@@ -241,10 +241,6 @@ echo "export PATH=/opt/apache-maven-3.5.2/bin:$PATH" >> ~/.bashrc
 
 source ~/.bashrc
 ```
-
-Verify Maven:
-`mvn -v`
-
 Install Java (Amazon Correto 8) into your EC2 instance:
 ```bash
 sudo dnf install -y java-1.8.0-amazon-corretto-devel
@@ -253,6 +249,26 @@ export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64
 
 export PATH=/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64/jre/bin/:$PATH
 ```
+Install Git:
+```bash
+sudo dnf update
+sudo dnf install git -y
+```
+Install All 3:
+```bash
+wget https://archive.apache.org/dist/maven/maven-3/3.5.2/binaries/apache-maven-3.5.2-bin.tar.gz
+sudo tar xzf apache-maven-3.5.2-bin.tar.gz -C /opt
+echo 'export PATH=/opt/apache-maven-3.5.2/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+sudo dnf install -y java-1.8.0-amazon-corretto-devel
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-amazon-corretto.x86_64
+export PATH=$JAVA_HOME/jre/bin/:$PATH
+sudo dnf update -y
+sudo dnf install git -y
+```
+Verify Maven:
+`mvn -v`
+
 Verify Java 8:
 `java -version`
 
@@ -283,11 +299,7 @@ Modify index.jsp
 </html>
 ```
 
-Install Git:
-```bash
-sudo dnf update
-sudo dnf install git -y
-```
+
 
 Resetting your Git credentials:
 ```bash
